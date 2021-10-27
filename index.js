@@ -14,8 +14,18 @@ const synth = new Tone.DuoSynth({
 synth.toDestination();
 
 document.getElementById('synth').addEventListener('click', function () {
-  const now = Tone.now();
-  synth.triggerAttackRelease('C4', '8n', now);
+  const addOctaveNumbers = (scale, octaveNumber) => scale.map(note => {
+  const firstOctaveNoteIndex = scale.indexOf('C' !== -1 ? scale.indexOf('C') : scale.indexOf('C#'));
+  const noteOctaveNumber = scale.indexOf(note) < firstOctaveNoteIndex ? octaveNumber - 1 : octaveNumber;
+  return `${note}${noteOctaveNumber}`
+})
+
+  const GMajorScaleWithOctave = addOctaveNumbers(GMajorScale, 4);
+  
+  GMajorScaleWithOctave.forEach((note, index) => {
+    synth.triggerAttackRelease(note, '4n', index + 1)
+  });
+  Tone.Transport.start(0);
 });
 
 
