@@ -55,7 +55,7 @@ document.getElementById('kick').addEventListener('click', function () {
     console.log(time);
     kick.triggerAttackRelease('C1', '16n', time)
   }, kickPattern).start(0);
-  Tone.Transport.start(0);
+  Tone.Transport.start();
 });
 
 
