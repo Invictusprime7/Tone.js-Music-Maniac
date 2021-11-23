@@ -99,27 +99,28 @@ const mainChords = [
   { time: '7:3', note: VChord, duration: '4n' },
 ];
 
-const playSynthPart = (numOfSynthClicks) => {
+const playSynthPart = (synthClicked) => {
   const synthPart = new Tone.Part((time, note) => {
     synth.triggerAttackRelease(note.note, note.duration, time);
   }, mainChords)
-  if (numOfSynthClicks <= 1) {
+  if (synthClicked) {
     synthPart.start(0);
-    console.log(numOfSynthClicks);
+    console.log(synthClicked);
     Tone.Transport.start();
-  } else {
-    console.log(numOfSynthClicks)
+  } else if (!synthClicked) {
+    console.log(synthClicked)
     Tone.Transport.stop()
     synthPart.start(0)
     Tone.Transport.start()
   }
 };
 
-let numOfSynthsClicked = 0;
+let synthClicked = false;
 
 document.getElementById('synth').addEventListener('click', () => {
-  numOfSynthsClicked += 1;
-  playSynthPart(numOfSynthsClicked);
+  console.log('synth');
+  synthClicked = !synthClicked;
+  playSynthPart(synthClicked);
 });
 
 
@@ -154,29 +155,29 @@ const kickPattern = [
   { time: '7:0:2' },
   { time: '7:1:' },
 ];
-
-// this was the old implmentation of the kick part where i was having an issue with the sound coming 
-const playKickPart = (numOfKickClicks) => {
+ 
+const playKickPart = (kickClicked) => {
   const kickPart = new Tone.Part((time) => {
     kick.triggerAttackRelease('C1', time);
   }, kickPattern)
-  if (numOfKickClicks <= 1) {
+  if (kickClicked) {
     kickPart.start(0);
-    console.log(numOfKickClicks);
+    console.log(kickClicked);
     Tone.Transport.start();
-  } else {
-    console.log(numOfKickClicks)
+  } else if (!kickClicked) {
+    console.log(!kickClicked)
     Tone.Transport.stop()
     kickPart.start(0)
     Tone.Transport.start()
   }
 };
 
-let numOfKicksClicked = 0;
+let kickClicked = false;
 
 document.getElementById('kick').addEventListener('click', () => {
-  numOfKicksClicked += 1;
-  playKickPart(numOfKicksClicked);
+  console.log('kick');
+  kickClicked = !kickClicked;
+  playKickPart(kickClicked);
 });
 
 
@@ -209,55 +210,29 @@ const snarePattern = [
 
 
 
-const playSnarePart = (numOfSnareClicks) =>{
-  const snarePart = new Tone.Part((time)=>{
-    snare.triggerAttackRelease('8n',time)
-  },snarePattern).start(0);
-  if (numOfSnareClicks <= 1) {
+const playSnarePart = (snareClicked) => {
+  const snarePart = new Tone.Part((time) => {
+    snare.triggerAttackRelease('8n', time);
+  }, snarePattern)
+  if (snareClicked) {
     snarePart.start(0);
-    console.log(numOfSnareClicks);
+    console.log(snareClicked);
     Tone.Transport.start();
-  } else {
-    console.log(numOfSnareClicks)
+  } else if (!snareClicked) {
+    console.log(!snareClicked)
     Tone.Transport.stop()
     snarePart.start(0)
     Tone.Transport.start()
   }
-}
+};
 
-
-// const playSnarePart = (numOfSnareClicks) => {
-//   const snarePart = new Tone.Part((time) => {
-//     console.log(time)
-//     console.log(time.time)
-//     snare.triggerAttackRelease("8n",);
-//   }, snarePattern)
-//   if (numOfSnareClicks <= 1) {
-//     snarePart.start(0);
-//     console.log(numOfSnareClicks);
-//     Tone.Transport.start();
-//   } else {
-//     console.log(numOfSnareClicks)
-//     Tone.Transport.stop()
-//     snarePart.start(0)
-//     Tone.Transport.start()
-//   }
-// };
-
-let numOfSnaresClicked = 0;
+let snareClicked = false;
 
 document.getElementById('snare').addEventListener('click', () => {
-  numOfSnaresClicked += 1;
-  playSnarePart(numOfSnaresClicked);
+  console.log('snare');
+  snareClicked = !snareClicked;
+  playSnarePart(snareClicked);
 });
-
-// document.getElementById('snare').addEventListener('click', function () {
-//   const snarePart = new Tone.Part((time) => {
-//     console.log(time);
-//     snare.triggerAttackRelease('32n', time);
-//   }, snarePattern).start(0);
-//   Tone.Transport.start();
-// });
 
 const bass = new Tone.MonoSynth({
   oscillator: {
@@ -279,25 +254,75 @@ const bassline = [
   { time: '6:7', note: 'F0', duration: '1:1' },
 ];
 
-const playBassPart = (numOfBassClicks )=> {
+const playBassPart = (bassClicked )=> {
   const bassPart = new Tone.Part((time) => {
     bass.triggerAttackRelease('C1', '8n', time)
   }, bassline)
-  if (numOfBassClicks <= 1) {
+  if (bassClicked) {
     bassPart.start(0)
     Tone.Transport.start();
-    console.log(numOfBassClicks);
-  }else {
-    console.log(numOfBassClicks);
+    console.log(bassClicked);
+  }else if (!bassClicked) {
+    console.log(!bassClicked);
     Tone.Transport.stop();
     bassPart.start(0)
     Tone.Transport.start();
   }
 }
 
-let numOfBassClicked = 0;
+let bassClicked = 0;
 
 document.getElementById('808').addEventListener('click', () => {
-  numOfBassClicked += 1;
-  playBassPart(numOfBassClicked);
+  console.log('808');
+  bassClicked = !bassClicked;
+  playBassPart(bassClicked);
+});
+
+
+const hihat = new Tone.MetalSynth({
+  frequency: 200,
+  envelope: {
+    attack: 0.008,
+    decay: 0.052,
+    release: 0.002
+  },
+  harmonicity: 5.1,
+  modulationIndex: 32,
+  resonance: 3000,
+  octaves: 1.5
+}).toDestination();
+
+const hihatPattern = [
+  {time: '0:1'},
+  {time: '0:2'},
+  {time: '0:3'},
+  {time: '0:5'},
+  {time: '0:6'},
+  {time: '0:7'},
+  {time: '0:9'},
+  {time: '1:0'},
+];
+
+const playHihatPart = (hihatClicked) => {
+  const hihatPart = new Tone.Part((time) => {
+    hihat.triggerAttackRelease('C1', time);
+  }, hihatPattern)
+  if (hihatClicked) {
+    hihatPart.start(0);
+    console.log(hihatClicked);
+    Tone.Transport.start();
+  } else if (!hihatClicked) {
+    console.log(!hihatClicked)
+    Tone.Transport.stop()
+    hihatPart.start(0)
+    Tone.Transport.start()
+  }
+};
+
+let hihatClicked = false;
+
+document.getElementById('Hi-Hat').addEventListener('click', () => {
+  console.log('Hi-Hst');
+  hihatClicked = !hihatClicked;
+  playHihatPart(hihatClicked);
 });
