@@ -1,20 +1,108 @@
-<script src = "https://unpkg.com/tone"></script>
-<script src = "music.js"></script>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tone.js Music Maniac - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="libs/Tone.js"></script>
+</head>
 <body>
-  
-<div class = "btn-group">
-  
- <button id = "synth">Synth</button>
-  
-  <button id = "kick">Kick</button>
-  
-  <button id= "snare">Snare</button>
-  
-  <button id= "808">808</button>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Tone.js Music Maniac</h1>
+            <p class="hero-subtitle">Interactive Music Synthesis Portfolio</p>
+            <p class="hero-description">A web-based music application showcasing advanced audio synthesis using Tone.js. Experience different instruments and rhythmic patterns through an interactive interface.</p>
+        </div>
+    </header>
 
-  
-</div>
+    <!-- Live Demo Section -->
+    <section class="demo-section">
+        <h2>🎵 Live Demo</h2>
+        <p>Click the buttons below to experience different synthesized instruments and drum patterns:</p>
+        
+        <div class="btn-group">
+            <button id="synth" class="instrument-btn">
+                <span class="btn-title">Synth</span>
+                <span class="btn-description">DuoSynth with sine oscillator</span>
+            </button>
+            
+            <button id="kick" class="instrument-btn">
+                <span class="btn-title">Kick</span>
+                <span class="btn-description">Membrane synth with custom pattern</span>
+            </button>
+            
+            <button id="snare" class="instrument-btn">
+                <span class="btn-title">Snare</span>
+                <span class="btn-description">White noise synthesis</span>
+            </button>
+            
+            <button id="808" class="instrument-btn">
+                <span class="btn-title">808</span>
+                <span class="btn-description">Triangle wave bass synthesizer</span>
+            </button>
+        </div>
+    </section>
 
+    <!-- Code Documentation Section -->
+    <section class="documentation-section">
+        <h2>📚 Code Documentation</h2>
+        
+        <div class="doc-grid">
+            <div class="doc-card">
+                <h3>Architecture Overview</h3>
+                <p>This application leverages Tone.js, a powerful Web Audio API framework, to create various synthesizers and audio effects. The architecture consists of:</p>
+                <ul>
+                    <li><strong>Synthesizers:</strong> DuoSynth, MembraneSynth, NoiseSynth, MonoSynth</li>
+                    <li><strong>Effects:</strong> Low-pass filtering for kick drum processing</li>
+                    <li><strong>Sequencing:</strong> Pattern-based rhythmic sequences using Tone.Part</li>
+                    <li><strong>Transport:</strong> Global timing and synchronization system</li>
+                </ul>
+            </div>
+            
+            <div class="doc-card">
+                <h3>Technical Implementation</h3>
+                <p>Each instrument demonstrates different synthesis techniques:</p>
+                <ul>
+                    <li><strong>Synth:</strong> Uses dual oscillators for rich harmonic content</li>
+                    <li><strong>Kick:</strong> MembraneSynth with envelope shaping and low-pass filtering</li>
+                    <li><strong>Snare:</strong> White noise synthesis with rapid envelope decay</li>
+                    <li><strong>808:</strong> MonoSynth with triangle wave for characteristic bass sound</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Details Section -->
+    <section class="tech-details">
+        <h2>⚙️ Technical Details</h2>
+        
+        <div class="tech-grid">
+            <div class="tech-item">
+                <h4>Framework</h4>
+                <p>Tone.js v14.8.26</p>
+            </div>
+            <div class="tech-item">
+                <h4>Audio Context</h4>
+                <p>Web Audio API</p>
+            </div>
+            <div class="tech-item">
+                <h4>Synthesis Types</h4>
+                <p>Subtractive, FM, Noise</p>
+            </div>
+            <div class="tech-item">
+                <h4>Pattern Format</h4>
+                <p>Tone.js Transport notation</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Built with ❤️ using Tone.js and modern Web Audio API</p>
+    </footer>
+
+    <script src="index.js"></script>
 </body>
+</html>
